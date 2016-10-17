@@ -1,5 +1,49 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    
+    form#formAddUser(name="photo", method="post", action="/index")
+        div.section
+            div.row
+                h3 Please enter the participant ID provided to you by the study coordinator.
+                div.form-horizontal
+                    input#inputID(type="text", placeholder="participant ID", name="participantID")
+                    button.btn.btn-primary(type="button") submit
+        div.section.hide
+            div.row
+                h3 Please enter a trait that describes you.
+                div.form-horizontal
+                    input#inputTrait(type="text", placeholder="your trait", name="trait")
+                    button.btn.btn-primary#enterTrait(type="button") submit
+        div.hide
+            h2#traitText
+            p Retake your photo as many times as you'd like until you are satisfied. Click on an image from the gallery below to choose different photos. Once you've decided on the photo you want, click the submit button. 
+            canvas( id="canvas", class="img-responsive")
+            div.row
+                div.col-xs-6
+                    h5 Live Video Camera
+                div.col-xs-6
+                   h5 Current selected photo 
+            div.row( class="spaceAfterRow")
+                div.col-xs-6
+                    video( autoplay="false", id="videoElement", class="img-responsive")    
+                div.col-xs-6
+                    img( id="photo", src="", class="img-responsive selected")
+            div.row( class="spaceAfterRow")
+                input#numPhotos.hide(name="numPhotos", type="text")
+                div.col-xs-6(style="text-align:center")
+                    button.btn.btn-warning#btnPhoto(type="button") Take Photo
+                div.col-xs-6(style="text-align:center")
+                    button.btn.btn-success#btnSubmit(type="submit") Submit this Photo
+            div.row
+                div.well.inline-headers
+                    h3 Photo Gallery 
+                    h5 Click on a thumbnail to switch photo selection
+                    div(id="gallery")
+
+            
+        
+    
+
+
+

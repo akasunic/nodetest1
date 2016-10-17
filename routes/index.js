@@ -1,52 +1,40 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+/* GET thanks page. */
+router.get('/thanks', function(req, res) {
+    
+  res.render('thanks', { title: 'Thank You!' });
+});
+
+/* GET main index page. */
+router.get('/', function(req, res) {
+    res.render('index', { title: 'Photo Task'});
 });
 
 
-/* GET Hello World page. */
-router.get('/helloworld', function(req, res) {
-    res.render('helloworld', { title: 'Hello, World!' });
-});
-
-
-
-// GET Userlist page.
-router.get('/userlist', function(req, res){
-	var db = req.db;
-	var collection = db.get('usercollection');
-		collection.find({}, {}, function(e, docs){
-			res.render('userlist', {
-				"userlist" : docs
-			});
-		});
-});
-
-/* GET New User page. */
-router.get('/newuser', function(req, res){
-	res.render('newuser', {title: 'Add New User'});
-});
-
-/* POST to Add User Service */
-router.post('/adduser', function(req, res) {
-
+/* POST to Index page */
+router.post('/index', function(req, res) {
+    
     // Set our internal DB variable
     var db = req.db;
 
-    // Get our form values. These rely on the "name" attributes
-    var userName = req.body.username;
-    var userEmail = req.body.useremail;
+    //form values, from name attributes
+    var participantID = req.body.participantID;
+    var trait = req.body.trait;
+    var numPhotos = req.body.numPhotos;
+    console.log("num Photos" + numPhotos);
 
     // Set our collection
-    var collection = db.get('usercollection');
+    var participants = db.get('studyParticipants');
+    
 
     // Submit to the DB
-    collection.insert({
-        "username" : userName,
-        "email" : userEmail
+    participants.insert({
+        "participantID" : participantID,
+        "trait" : trait,
+        "numPhotos" : numPhotos
+
     }, function (err, doc) {
         if (err) {
             // If it failed, return error
@@ -54,7 +42,7 @@ router.post('/adduser', function(req, res) {
         }
         else {
             // And forward to success page
-            res.redirect("userlist");
+            res.redirect("thanks");
         }
     });
 });
