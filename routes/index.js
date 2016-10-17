@@ -53,7 +53,7 @@ router.get('/allphotos', function(req, res) {
     // Set our internal DB variable
     var db = req.db;
     var participants = db.get('studyParticipants');
-    participants.find({},{},function(e, docs){
+    participants.find({}, {}, function(e, docs){
         res.render('allphotos', {
             "allphotos" : docs
         });

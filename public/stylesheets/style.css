@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 30px;
   font-family:'Cousine', monospace;
 }
 
@@ -8,7 +8,7 @@ a {
 }
 
 td .img-responsive {
-    width:25%;
+    width:100%;
     height:auto;
 
 }
@@ -23,9 +23,10 @@ td .img-responsive {
     border-color:red;
 }
 
+
 button{
-    display:block
-    text:center;
+    display:block;
+    text-align:center;
     margin-bottom: 10px;
 }
 
@@ -38,7 +39,6 @@ button{
     height: auto;
     padding: 10px;
 }
-
 
 .hide{
   display:none;

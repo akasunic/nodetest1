@@ -2,21 +2,22 @@ extends layout
 
 block content
     h3 Database Content
-    table.table
-        thead
-            tr
-                th participantID
-                th trait
-                th numPhotos
-                th photo
-        tbody
-            each participant, i in allphotos
+    div.table-responsive
+        table.table.table-bordered
+            thead
                 tr
-                    td 
-                        #{participant.participantID}
-                    td 
-                        #{participant.trait}
-                    td 
-                        #{participant.numPhotos}
-                    td 
-                        img(class="img-responsive", src=participant.photo)
+                    th.col-md-3 participantID
+                    th.col-md-3 trait
+                    th.col-md-3 numPhotos
+                    th.col-md-3 photo
+            tbody
+                each participant, i in allphotos
+                    tr
+                        td 
+                            text #{participant.participantID}
+                        td 
+                            text #{participant.trait}
+                        td 
+                            text #{participant.numPhotos}
+                        td 
+                            img(class="img-responsive", src=participant.photo)
