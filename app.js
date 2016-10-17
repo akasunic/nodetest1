@@ -8,7 +8,7 @@ var express = require('express'),
 //New Code
 var mongo = require('mongodb'),
   monk = require('monk'),
-  db = monk('localhost:27017/nodetest1');
+  db = monk('mongodb://heroku_fwjd3rmw:o8sblbp21disrjmk5oghti8t14@ds059496.mlab.com:59496/heroku_fwjd3rmw');
 
 var routes = require('./routes/index');
 // var users = require('./routes/users');
