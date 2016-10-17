@@ -1,9 +1,10 @@
-// FRONT END
+// FRONT END CODE
 
 var video = document.querySelector("#videoElement");
 var canvas = document.querySelector("#canvas");
 var photo = document.querySelector('#photo');
 var numPhotos=0;
+var selectedURL = $('#selectedURL');
 
 
  
@@ -30,6 +31,7 @@ gallery.on("click", "img", function(){
   $this = $(this);
   $this.addClass('selected');
   $('#photo').attr('src', $this.attr('src'));
+  selectedURL.val($this.attr('src'));
 });
 
 //click to show/hide sections (see jade template)
@@ -46,13 +48,13 @@ $(".section").on('click', 'button', function(){
       canvas.height = video.videoHeight;
       context.drawImage(video, 0, 0, canvas.width, canvas.height);
       var data = canvas.toDataURL('image/png');
+      selectedURL.val(data);
       photo.setAttribute('src', data);
       var currentImg = $('<img>').attr("src", data);
       gallery.children($('img')).removeClass('selected');
       gallery.append(currentImg.addClass('selected'));
       numPhotos+=1;
       $('#numPhotos').val(numPhotos);
-      console.log('value' + $( '#numPhotos').val());
       
  })
 
@@ -67,7 +69,7 @@ $(".section").on('click', 'button', function(){
     photo.setAttribute('src', data);
   }
 
-//have not yet created videoError function
+//have not created videoError function; may need to do so after user testing
 function videoError(e) {
     // do something
 }
