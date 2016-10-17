@@ -1,9 +1,9 @@
 {
-  "name": "nodetest1",
+  "name": "photo-taking-study",
   "version": "4.5.0",
   "private": true,
   "scripts": {
-    "start": "npm start"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
