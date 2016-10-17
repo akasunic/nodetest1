@@ -1,4 +1,22 @@
 extends layout
 
 block content
-    for 
+    h3 Database Content
+    table.table
+        thead
+            tr
+                th participantID
+                th trait
+                th numPhotos
+                th photo
+        tbody
+            each participant, i in allphotos
+                tr
+                    td 
+                        #{participant.participantID}
+                    td 
+                        #{participant.trait}
+                    td 
+                        #{participant.numPhotos}
+                    td 
+                        img(class="img-responsive", src=participant.photo)

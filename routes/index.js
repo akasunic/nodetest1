@@ -48,38 +48,18 @@ router.post('/index', function(req, res) {
 });
 
 /* GET showPhotos page */
-router.get('/index', function(req, res) {
+router.get('/allphotos', function(req, res) {
     
     // Set our internal DB variable
     var db = req.db;
-
-    //form values, from name attributes
-    var participantID = req.body.participantID;
-    var trait = req.body.trait;
-    var numPhotos = req.body.numPhotos;
-    var selectedURL = req.body.selectedURL;
-
-    // Set our collection
     var participants = db.get('studyParticipants');
-
-    // Submit to the DB
-    participants.insert({
-        "participantID" : participantID,
-        "trait" : trait,
-        "numPhotos" : numPhotos,
-        "photo" : selectedURL
-
-    }, function (err, doc) {
-        if (err) {
-            // If it failed, return error
-            res.send("There was a problem adding the information to the database.");
-        }
-        else {
-            // And forward to success page
-            res.redirect("thanks");
-        }
+    participants.find({},{},function(e, docs){
+        res.render('allphotos', {
+            "allphotos" : docs
+        });
     });
 });
+
 
 
 module.exports = router;
